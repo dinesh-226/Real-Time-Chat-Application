@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
 app.use(cors({
   origin: [
     "http://localhost:3000",
-    "https://realtime-chat-frontend.onrender.com"
+    "https://real-time-chat-application-frontend-qp6b.onrender.com"
   ],
   credentials: true
 }));
