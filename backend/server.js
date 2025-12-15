@@ -23,6 +23,15 @@ app.get('/', (req, res) => {
     res.send("Real time chat application Backend is up and running!!!")
 })
 
+app.use(cors({
+  origin: [
+    "http://localhost:3000",
+    "https://realtime-chat-frontend.onrender.com"
+  ],
+  credentials: true
+}));
+
+
 const server = http.createServer(app)
 const io = new Server(server, {
     cors:{
