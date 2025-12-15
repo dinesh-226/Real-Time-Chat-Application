@@ -14,8 +14,11 @@ app.use(cors({
     "http://localhost:3000",
     "https://real-time-chat-application-frontend-qp6b.onrender.com"
   ],
-  credentials: true
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
+
+app.options("*", cors());
 
 app.use(express.json())
 
@@ -32,11 +35,15 @@ app.get('/', (req, res) => {
 
 const server = http.createServer(app)
 const io = new Server(server, {
-    cors:{
-        origin: '*',
-        methods: ['GET', 'POST']
-    }
-})
+  cors: {
+    origin: [
+      "http://localhost:3000",
+      "https://real-time-chat-application-frontend-qp6b.onrender.com"
+    ],
+    methods: ["GET", "POST"]
+  }
+});
+
 
 global.io = io;
 
