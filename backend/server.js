@@ -9,7 +9,14 @@ const userRoutes = require('./routes/userRoute')
 const messageRoutes = require('./routes/messageRoute')
 
 const app = express()
-app.use(cors())
+app.use(cors({
+  origin: [
+    "http://localhost:3000",
+    "https://real-time-chat-application-frontend-qp6b.onrender.com"
+  ],
+  credentials: true
+}));
+
 app.use(express.json())
 
 connectDB()
@@ -22,15 +29,6 @@ app.use('/api/v1/messages', messageRoutes)
 app.get('/', (req, res) => {
     res.send("Real time chat application Backend is up and running!!!")
 })
-
-app.use(cors({
-  origin: [
-    "http://localhost:3000",
-    "https://real-time-chat-application-frontend-qp6b.onrender.com"
-  ],
-  credentials: true
-}));
-
 
 const server = http.createServer(app)
 const io = new Server(server, {
